@@ -5,7 +5,7 @@ const connectDB = require("./config/db");
 const path = require("path");
 
 // Routes
-const authRoutes = require("./routes/authRoutes");
+// const authRoutes = require("./routes/authRoutes");
 const meetingRoutes = require("./routes/meetingRoutes");
 
 // Connect to mongo db
@@ -20,7 +20,7 @@ app.use(morgan("tiny"));
 
 // Routes
 // app.use("/api/auth", authRoutes);
-// app.use("/api/meeting", meetingRoutes);
+app.use("/api/meeting", meetingRoutes);
 
 const PORT = process.env.PORT || 5000;
 if (process.env.NODE_ENV === "production") {

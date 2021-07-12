@@ -4,8 +4,7 @@
   "description": "This is a simple API built to enable event planners and organizers plan ahead for their event and it also allows event attendants register for events they will be attending.",
   "main": "server.js",
   "scripts": {
-    "start": "SET NODE_ENV=production & node server",
-    "dev": "nodemon server"
+    "start": "nodemon server"
   },
   "repository": {
     "type": "git",
