@@ -11,6 +11,6 @@ const {
 
 // Auth routes
 router.post("/register", createUser);
-router.post("login", login);
+router.post("/login", login);
 
 module.exports = router;
