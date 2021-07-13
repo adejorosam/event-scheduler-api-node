@@ -2,6 +2,7 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const securePassword = require('../utils/securePassword');
 const jwt = require('jsonwebtoken');
+const getSignedToken = require('../utils/getSignedToken');
 const authController = { 
     createUser: async (req, res) => {
         try{
@@ -15,11 +16,7 @@ const authController = {
                 password: await securePassword(req.body.password),
             }); 
             const saveUser = await user.save();
-            const token = jwt.sign({ _id: user._id, 
-                name: user.name, 
-                email: user.email,
-            password: user.password  }, 
-                process.env.TOKEN_SECRET, { expiresIn: '3h' });
+            const token = await getSignedToken(user);
             res.status(201).json({
                 success:true, 
                 msg: "User created successfully",
@@ -41,10 +38,7 @@ const authController = {
         if(!validPass){
             return res.status(400).json({error_msg: "E-mail or password is wrong"});
         }
-        const token = jwt.sign({ _id: user._id, 
-            name: user.name, 
-            email: user.email  }, 
-            process.env.TOKEN_SECRET, { expiresIn: '3h' });
+        const token = await getSignedToken(user);
         return res.status(200).json({token: token});
         
       }catch(error){

@@ -6,3 +6,7 @@ const securePassword = async (password) => {
     return hashedPassword;
 };
 module.exports = securePassword;
+
+
+
+
