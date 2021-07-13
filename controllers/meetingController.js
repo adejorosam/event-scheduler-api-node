@@ -5,8 +5,8 @@ const meetingController = {
     // @route   POST /api/v1/meetings
     // @access  Private
     createMeeting: async (req, res) => {
-        console.log(req.body);
     try{
+        req.body.user = req.user._id
         const meeting = await Meeting.create(req.body);
     res.status(201).json({
         success:true, 
