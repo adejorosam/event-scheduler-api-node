@@ -69,6 +69,25 @@ const meetingController = {
             }
             res.json( {message: "Successfully deleted contact"});
         });
+    },
+
+    indexUserMeetings: async(req, res) => {
+        // console.log(req.user._id);
+        const meetings = await Meeting.findOne({user: req.user._id});
+        try{
+            res.status(201).json({
+                success:true, 
+                msg: "Meetings retrieved successfully",
+                data: meetings
+            });
+        }catch(error){
+            res.status(500).json({
+                // success:true, 
+                // msg: "Meetings retrieved successfully",
+                data: error.message
+            });
+        }
+        
     }
 };
 

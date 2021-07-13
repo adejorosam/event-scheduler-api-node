@@ -9,7 +9,8 @@ const {
   getMeetings,
   getMeeting,
   updateMeeting,
-  deleteMeeting
+  deleteMeeting,
+  indexUserMeetings
 } = meetingController;
 
 // Meeting routes
@@ -18,6 +19,6 @@ router.get("/meetings", authMiddleware, getMeetings);
 router.get("/meetings/:meetingId", authMiddleware, getMeeting);
 router.patch("/meetings/:meetingId", authMiddleware, updateMeeting);
 router.delete("/meetings/:meetingId", authMiddleware, deleteMeeting);
-
+router.get("/meetings/organizer", authMiddleware, indexUserMeetings);
 
 module.exports = router;
