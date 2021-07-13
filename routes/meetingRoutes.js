@@ -13,8 +13,8 @@ const {
 } = meetingController;
 
 // Meeting routes
-router.post("/meetings", authMiddleware, createMeeting);
-router.get("/meetings", authMiddleware, getMeetings);
+router.post("/meetings", createMeeting);
+router.get("/meetings", getMeetings);
 router.get("/meetings/:meetingId", authMiddleware, getMeeting);
 router.patch("/meetings/:meetingId", authMiddleware, updateMeeting);
 router.delete("/meetings/:meetingId", authMiddleware, deleteMeeting);

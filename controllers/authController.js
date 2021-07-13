@@ -42,6 +42,8 @@ const authController = {
         return res.status(400).json({ error_msg: error.message });
       }
   }
+
+  
 };
 
 module.exports = authController;

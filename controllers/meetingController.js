@@ -1,16 +1,26 @@
-const Meeting = require('./../models/Meeting');
+const Meeting = require('../models/meetings');
 
 const meetingController = { 
     // @desc    Create a new meeting
     // @route   POST /api/v1/meetings
     // @access  Private
     createMeeting: async (req, res) => {
-    const meeting = await Meeting.create(req.body);
+        console.log(req.body);
+    try{
+        const meeting = await Meeting.create(req.body);
     res.status(201).json({
         success:true, 
         msg: "Meeting created successfully",
         data: meeting
     });
+    }catch(error){
+        res.status(422).json({
+            success: false,
+            msg: error.message,
+            data: null
+        });
+    }
+    
   },
 
     // @desc    Get all meetings
@@ -48,7 +58,7 @@ const meetingController = {
             res.json(meeting);
         });
     },
-    
+
     // @desc    Delete a particular meeting in the database
     // @route   DELETE /api/v1/meeting/:meetingId
     // @access  Private
